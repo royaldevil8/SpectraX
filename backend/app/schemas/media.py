@@ -33,3 +33,30 @@ class MediaVersionRead(BaseModel):
 class MediaUploadRead(BaseModel):
     asset: MediaAssetRead
     version: MediaVersionRead
+
+class AVSyncTrackRead(BaseModel):
+    track_id: int
+    analysis_available: bool
+    speech_duration_seconds: float
+    visual_motion_duration_seconds: float
+    aligned_duration_seconds: float
+    speech_coverage: float
+    visual_coverage: float
+    mismatch_duration_seconds: float
+    evidence_items: int
+    unavailable_reason: str | None = None
+
+
+class AVSyncRead(BaseModel):
+    media_asset_id: UUID
+    media_path: str
+    frame_count: int
+    fps: float
+    duration_seconds: float
+    audio_available: bool
+    audio_unavailable_reason: str | None
+    speech_interval_count: int
+    track_count: int
+    valid_track_count: int
+    persisted_evidence_count: int
+    tracks: list[AVSyncTrackRead]

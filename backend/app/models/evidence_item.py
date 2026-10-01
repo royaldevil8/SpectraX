@@ -2,15 +2,15 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String, func
+from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base
 
 
-class MediaFrame(Base):
-    __tablename__ = "media_frames"
+class EvidenceItem(Base):
+    __tablename__ = "evidence_items"
 
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
@@ -25,44 +25,45 @@ class MediaFrame(Base):
         index=True,
     )
 
-    frame_number: Mapped[int] = mapped_column(
-        Integer,
+    evidence_type: Mapped[str] = mapped_column(
+        String(64),
         nullable=False,
+        index=True,
     )
 
-    timestamp_seconds: Mapped[Decimal] = mapped_column(
+    track_id: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
+    start_seconds: Mapped[Decimal] = mapped_column(
         Numeric(20, 6),
         nullable=False,
     )
 
-    storage_path: Mapped[str] = mapped_column(
-        String(1024),
+    end_seconds: Mapped[Decimal] = mapped_column(
+        Numeric(20, 6),
         nullable=False,
     )
 
-    width: Mapped[int | None] = mapped_column(
-        Integer,
-        nullable=True,
+    duration_seconds: Mapped[Decimal] = mapped_column(
+        Numeric(20, 6),
+        nullable=False,
     )
 
-    height: Mapped[int | None] = mapped_column(
-        Integer,
-        nullable=True,
+    description: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
     )
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=func.now(),
         nullable=False,
+        index=True,
     )
 
     media_asset = relationship(
         "MediaAsset",
-        back_populates="frames",
-    )
-
-    visual_detections = relationship(
-        "VisualDetection",
-        back_populates="media_frame",
-        cascade="all, delete-orphan",
+        back_populates="evidence_items",
     )

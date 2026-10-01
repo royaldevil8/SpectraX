@@ -8,7 +8,10 @@ class LocalStorage:
     def __init__(self, base_path: str | Path | None = None) -> None:
         configured_path = base_path or settings.storage_path
 
-        self.base_path = Path(configured_path).resolve()
+        configured = Path(configured_path)
+        if not configured.is_absolute():
+            configured = Path(__file__).resolve().parents[3] / configured
+        self.base_path = configured.resolve()
 
         self.directories = {
             "uploads": self.base_path / "uploads",
@@ -54,6 +57,9 @@ class LocalStorage:
 
         if path.is_file():
             path.unlink()
+
+    def resolve_path(self, relative_path: str) -> Path:
+        return self._resolve_path(relative_path)
 
     def _resolve_path(self, relative_path: str) -> Path:
         path = (self.base_path / relative_path).resolve()

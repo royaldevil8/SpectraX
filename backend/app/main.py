@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from sqlalchemy import text
 
-from app.api.v1.router import api_router
+from app.api.v1.cases import router as cases_router
+from app.api.v1.media import router as media_router
 from app.database import engine
 
 
@@ -14,8 +15,8 @@ app = FastAPI(
     version="0.1.0",
 )
 
-
-app.include_router(api_router)
+app.include_router(cases_router, prefix="/api/v1")
+app.include_router(media_router, prefix="/api/v1")
 
 
 @app.get("/")

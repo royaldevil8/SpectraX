@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -9,7 +11,7 @@ class Settings(BaseSettings):
     database_url: str
     redis_url: str
 
-    storage_path: str = "../storage"
+    storage_path: str = str((Path(__file__).resolve().parents[3] / "storage").resolve())
 
     model_config = SettingsConfigDict(
         env_file=".env",

@@ -86,3 +86,23 @@ class MediaAsset(Base):
         back_populates="media_asset",
         cascade="all, delete-orphan",
     )
+
+    evidence_items = relationship(
+        "EvidenceItem",
+        back_populates="media_asset",
+        cascade="all, delete-orphan",
+    )
+
+    risk_assessment = relationship(
+        "RiskAssessment",
+        back_populates="media_asset",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+
+    provenance_record = relationship(
+        "ProvenanceRecord",
+        back_populates="media_asset",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )

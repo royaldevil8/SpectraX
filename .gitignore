@@ -99,3 +99,6 @@ datasets/
 
 # Backup/source temporary files
 *.bak
+
+# ML model/checkpoint files
+*.tflite

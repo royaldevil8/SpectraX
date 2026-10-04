@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #07111F;
+    color: #F4F7FA;
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: #22344A;
+  }
+
+  ::selection {
+    background: rgba(56, 213, 255, 0.25);
+    color: #F4F7FA;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #2D4366 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #2D4366;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #38D5FF;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(34, 52, 74, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 52, 74, 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(rgba(34, 52, 74, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 52, 74, 0.25) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 0 1px rgba(56, 213, 255, 0.3), 0 0 20px rgba(56, 213, 255, 0.15);
+  }
+
+  .glow-danger {
+    box-shadow: 0 0 0 1px rgba(255, 92, 108, 0.3), 0 0 20px rgba(255, 92, 108, 0.1);
+  }
+
+  .heatmap-gradient {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 92, 108, 0.45) 0%,
+      rgba(245, 185, 66, 0.35) 30%,
+      rgba(56, 213, 255, 0.25) 60%,
+      transparent 100%
+    );
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(56, 213, 255, 0.08) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+}

@@ -28,7 +28,6 @@ function App() {
     timelineIntervals,
     reports,
     auditLogs,
-    loading,
     connected,
   } = useForensicData();
 
@@ -75,7 +74,7 @@ function App() {
 
         <main className="flex-1 overflow-y-auto scrollbar-thin">
           {screen === 'dashboard' && (
-            <DashboardScreen onNavigate={navigate} cases={cases} evidenceSignals={evidenceSignals} loading={loading} connected={connected} />
+            <DashboardScreen onNavigate={navigate} cases={cases} evidenceSignals={evidenceSignals} connected={connected} />
           )}
           {screen === 'new-investigation' && (
             <NewInvestigationScreen onNavigate={navigate} onStart={handleStartInvestigation} />

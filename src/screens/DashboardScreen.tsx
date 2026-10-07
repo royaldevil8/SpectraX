@@ -41,13 +41,11 @@ export function DashboardScreen({
   onNavigate,
   cases,
   evidenceSignals,
-  loading,
   connected,
 }: {
   onNavigate: (s: Screen) => void;
   cases: CaseRecord[];
   evidenceSignals: EvidenceSignal[];
-  loading: boolean;
   connected: boolean;
 }) {
   const recent = cases.slice(0, 5);
